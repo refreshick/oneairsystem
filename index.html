@@ -102,19 +102,8 @@ header{position:fixed;z-index:100;top:0;left:0;right:0;padding:16px 0}
 .btn:hover{transform:translateY(-2px)}
 .btn-primary{background:var(--accent);color:#fff}
 .btn-secondary{background:var(--surface);border-color:var(--line)}
-.hero-visual{position:relative;min-height:560px;display:grid;place-items:center}
-.orbit{position:absolute;width:min(490px,88vw);aspect-ratio:1;border:1px solid var(--line);border-radius:50%}
-.orbit::after{content:"";position:absolute;inset:48px;border:1px dashed var(--line);border-radius:50%}
-.ac{position:relative;z-index:2;width:min(410px,76vw);height:185px;border:1px solid #fff;border-radius:27px;background:linear-gradient(145deg,#fff,#edf3f5);box-shadow:0 30px 60px rgba(31,55,68,.1);transform:rotate(-7deg)}
-.ac-top{position:absolute;left:25px;right:25px;top:23px;height:57px;border-radius:14px;background:linear-gradient(90deg,#eef7ff,#d5e7f3)}
-.ac-grille{position:absolute;left:30px;right:30px;bottom:30px;height:20px;border-radius:3px;background:repeating-linear-gradient(90deg,transparent 0 13px,rgba(20,55,80,.2) 14px 15px)}
-.ac-name{position:absolute;left:31px;top:41px;font-size:12px;font-weight:800}
-.ac-temp{position:absolute;right:30px;top:37px;padding:4px 8px;border-radius:5px;background:#202527;color:#8bd5f4;font-weight:700}
-.air-flow{position:absolute;left:15%;right:9%;bottom:-65px;height:200px;transform:rotate(-7deg)}
-.air-flow span{position:absolute;height:7px;border-radius:100%;background:linear-gradient(90deg,transparent,var(--accent),transparent);filter:blur(1px);animation:flow 3.5s infinite}
-.air-flow span:nth-child(1){left:8%;right:22%;top:22%}.air-flow span:nth-child(2){left:18%;right:12%;top:42%}
-.air-flow span:nth-child(3){left:28%;right:5%;top:61%}.air-flow span:nth-child(4){left:39%;right:1%;top:78%}
-@keyframes flow{50%{transform:translateX(24px);opacity:.55}100%{transform:translateX(0);opacity:.9}}
+.hero-visual{position:relative;min-height:560px;display:flex;align-items:center;justify-content:center;overflow:visible}
+.hero-ac{position:relative;z-index:2;display:block;width:min(680px,112%);height:auto;object-fit:contain;margin-left:-25px;filter:drop-shadow(0 28px 35px rgba(31,55,68,.14))}
 .floating{position:absolute;left:2%;bottom:2%;z-index:4;width:220px;padding:17px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.9);box-shadow:var(--shadow)}
 .floating small{display:block;margin-bottom:5px;color:var(--muted);font-size:11px}
 .floating strong{font:20px "Space Grotesk"}.floating b{display:block;margin-top:7px;color:var(--accent);font-size:11px}
@@ -199,12 +188,11 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
 
 @media(max-width:980px){
   .nav-links{display:none}.menu-toggle{display:block}.nav.open .nav-links{display:grid;position:absolute;left:10px;right:10px;top:70px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
-  .hero{grid-template-columns:1fr;min-height:auto;padding-top:145px}.hero-visual{min-height:500px}.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}.specialists{grid-template-columns:1fr}.contact-box{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:145px}.hero-visual{min-height:500px}.hero-ac{width:min(680px,100%);margin-left:0}.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}.specialists{grid-template-columns:1fr}.contact-box{grid-template-columns:1fr}
 }
 @media(max-width:640px){
   .container{width:calc(100% - 24px)}.section{padding:75px 0}.section-head{display:block}.section-intro{margin-top:16px}
   h1{font-size:50px;letter-spacing:-3.5px}.hero-copy{font-size:15px}.hero-visual{min-height:390px}
-  .ac{width:320px;height:145px}.ac-top{left:20px;right:20px;top:19px;height:43px}.ac-grille{left:24px;right:24px;bottom:22px}.ac-name{left:24px;top:32px;font-size:9px}.ac-temp{right:22px;top:29px}
   .floating{width:175px;left:0;bottom:0}.grid-4,.grid-3,.catalog-grid{grid-template-columns:1fr}.card{min-height:230px}.specialist{grid-template-columns:1fr}.photo,.photo img{min-height:200px}.contact-box{padding:22px}.footer-row{display:block}.footer-links{margin-top:15px}
 }
 /* Mobile / tablet layout v2 */
@@ -231,7 +219,8 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
   .menu-toggle{width:40px;height:40px;border-radius:11px}
 
   .hero{min-height:auto;grid-template-columns:1fr;gap:22px;padding:120px 0 55px}
-  .hero-visual{min-height:330px}
+  .hero-visual{min-height:330px;overflow:visible}
+  .hero-ac{width:115%;max-width:none;margin-left:-7.5%;filter:drop-shadow(0 18px 24px rgba(31,55,68,.12))}
   .hero-copy{font-size:14px;line-height:1.65;margin-top:20px}
   h1{font-size:45px;line-height:.98;letter-spacing:-3px}
   .actions{display:grid;grid-template-columns:1fr;gap:9px}
@@ -348,18 +337,8 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
       </div>
     </div>
 
-    <div class="hero-visual reveal" aria-label="Иллюстрация кондиционера">
-      <div class="orbit" aria-hidden="true"></div>
-      <div class="ac" aria-hidden="true">
-        <div class="ac-top"></div>
-        <div class="ac-name">OneAirSystem</div>
-        <div class="ac-temp">22°</div>
-        <div class="ac-grille"></div>
-      </div>
-      <div class="air-flow" aria-hidden="true">
-        <span data-delay=".0s"></span><span data-delay=".7s"></span>
-        <span data-delay="1.4s"></span><span data-delay="2.1s"></span>
-      </div>
+    <div class="hero-visual reveal" aria-label="Кондиционер OneAirSystem">
+      <img class="hero-ac" src="images/hero-ac.png" alt="Кондиционер OneAirSystem">
       <div class="floating">
         <small>Подбор под помещение</small>
         <strong>Не просто мощность</strong>
