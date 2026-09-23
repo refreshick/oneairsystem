@@ -259,6 +259,89 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
   .footer-links{margin-top:14px}
 }
 
+
+/* Final mobile refinement */
+.partners-experience{
+  display:inline-flex;
+  align-items:center;
+  margin-top:15px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:var(--accent);
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.specialist-minimal{
+  grid-template-columns:180px 1fr;
+  align-items:center;
+}
+.specialist-minimal .photo{min-height:230px}
+.specialist-minimal h3{margin:0}
+
+@media(max-width:640px){
+  body{font-size:14px}
+  .container{width:calc(100% - 28px)}
+  .section{padding:50px 0}
+  .section-head{margin-bottom:20px}
+  .section-head h2{font-size:34px;letter-spacing:-2px}
+  .section-intro{font-size:13px;line-height:1.55}
+
+  /* Hero: no floating card over the illustration on phones. */
+  .hero{padding:112px 0 34px;gap:4px}
+  .hero-copy{margin-top:15px;font-size:14px;line-height:1.6}
+  h1{font-size:43px;letter-spacing:-2.8px}
+  .hero-visual{min-height:0;margin-top:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px}
+  .hero-ac{width:112%;margin:0 -6%;filter:drop-shadow(0 16px 22px rgba(31,55,68,.12))}
+  .floating{position:static;width:calc(100% - 8px);margin:0 4px;padding:13px 15px;border-radius:15px;box-shadow:none;background:var(--surface)}
+  .floating strong{font-size:17px}
+  .floating b{font-size:10px}
+  .floating small{font-size:10px}
+
+  /* The info card follows the AC instead of covering it. */
+  .hero-visual .floating{position:static;left:auto;right:auto;bottom:auto;width:calc(100% - 8px)}
+  .hero-visual .floating strong{display:block}
+
+  .actions{gap:8px}
+  .btn{min-height:48px}
+
+  /* Works: one clean image at a time, no partial neighbour visible. */
+  .works-ribbon{gap:10px;padding-bottom:8px}
+  .work-panel{flex:0 0 100%;width:100%;height:230px;aspect-ratio:auto;border-radius:17px}
+  .work-panel img{object-position:center center}
+
+  /* Partners: smaller cards, no overflow from logos/text. */
+  .marquee-wrap{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding:9px 0}
+  .marquee{gap:8px}
+  .partner{width:168px;height:68px;border-radius:14px}
+  .partner-logo{grid-template-columns:32px minmax(0,1fr);column-gap:8px;padding:8px 10px}
+  .partner-logo img{width:32px;height:32px;max-width:32px;max-height:32px;padding:2px;border-radius:7px}
+  .partner-logo strong{font-size:13px}
+  .partner-logo span{font-size:8px}
+  .partners-experience{margin-top:12px;padding:7px 12px;font-size:10px}
+
+  /* Specialists: full-width vertical cards. Images keep their proportions and are never stretched. */
+  .specialists{grid-template-columns:1fr;gap:12px}
+  .specialist,
+  .specialist-minimal{grid-template-columns:1fr;gap:10px;padding:10px;border-radius:18px}
+  .photo{height:205px;min-height:0;border-radius:13px;background:#e8eef1}
+  .photo img{width:100%;height:205px;min-height:0;object-fit:contain;object-position:center center}
+  .specialist h3{font-size:23px;letter-spacing:-1px}
+  .specialist-minimal .photo{height:230px;min-height:0}
+  .specialist-minimal .photo img{height:230px}
+  .specialist-minimal h3{padding:0 4px 4px;font-size:24px}
+
+  /* Dmitry's detailed information remains readable, but less bulky. */
+  .role{font-size:10px;line-height:1.35}
+  .exp{margin-top:9px;font-size:11px}
+  .review{margin-top:9px;padding:11px 12px;font-size:10.5px;line-height:1.5}
+  .profile-link{font-size:10px;margin:9px 4px 2px}
+
+  .contact-box{padding:18px;border-radius:19px}
+}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -274,6 +357,201 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
 .partner-logo img{max-width:42px;max-height:42px}
 @media(max-width:640px){
   .manufacturer-logo img{max-width:36px;max-height:36px}
+}
+
+/* =========================================================
+   FINAL MOBILE SPECIALISTS / HERO REFINEMENT
+   ========================================================= */
+
+@media (max-width: 640px){
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:108px 0 34px;
+    gap:0;
+  }
+
+  .hero-visual{
+    margin-top:10px;
+    min-height:0;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    overflow:visible;
+  }
+
+  .hero-ac{
+    width:108%;
+    max-width:none;
+    height:auto;
+    margin:0 -4%;
+    filter:drop-shadow(0 15px 22px rgba(31,55,68,.12));
+  }
+
+  .hero-visual .floating{
+    position:static;
+    width:calc(100% - 12px);
+    margin:0 6px;
+    padding:13px 15px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:rgba(255,255,255,.96);
+    box-shadow:0 8px 22px rgba(25,35,40,.06);
+    box-sizing:border-box;
+  }
+
+  .hero-visual .floating small{
+    display:block;
+    font-size:10px;
+    line-height:1.3;
+  }
+
+  .hero-visual .floating strong{
+    display:block;
+    margin-top:3px;
+    font-size:17px;
+    line-height:1.15;
+  }
+
+  .hero-visual .floating b{
+    display:block;
+    margin-top:7px;
+    font-size:10px;
+    line-height:1.45;
+  }
+
+  /* ---------- SPECIALISTS ---------- */
+  #specialists .section-head{
+    margin-bottom:22px;
+  }
+
+  #specialists .section-intro{
+    max-width:100%;
+    margin-top:12px;
+    font-size:14px;
+    line-height:1.55;
+  }
+
+  .specialists{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .specialist,
+  .specialist.specialist-minimal{
+    display:block;
+    width:100%;
+    box-sizing:border-box;
+    padding:10px;
+    border-radius:20px;
+    background:var(--surface);
+    overflow:hidden;
+  }
+
+  .specialist:hover{
+    transform:none;
+    box-shadow:none;
+  }
+
+  /* Photo is a deliberate 4:3 portrait area, not a giant banner. */
+  .specialist .photo,
+  .specialist-minimal .photo{
+    width:100%;
+    height:auto;
+    min-height:0;
+    aspect-ratio:4 / 3;
+    border-radius:14px;
+    overflow:hidden;
+    background:#e7edf0;
+  }
+
+  .specialist .photo img,
+  .specialist-minimal .photo img{
+    display:block;
+    width:100%;
+    height:100%;
+    min-height:0;
+    object-fit:cover;
+    object-position:center 65%;
+  }
+
+  /* Dmitry's card */
+  .specialist:not(.specialist-minimal) > div:last-child{
+    padding:5px 4px 3px;
+  }
+
+  .specialist:not(.specialist-minimal) h3{
+    margin:2px 0 0;
+    font-size:27px;
+    line-height:1.05;
+    letter-spacing:-1.4px;
+  }
+
+  .specialist:not(.specialist-minimal) .role{
+    margin-top:7px;
+    font-size:10.5px;
+    line-height:1.35;
+  }
+
+  .specialist:not(.specialist-minimal) .exp{
+    margin-top:14px;
+    font-size:12px;
+    line-height:1.35;
+  }
+
+  .specialist:not(.specialist-minimal) .review{
+    margin-top:10px;
+    padding:11px 12px;
+    border-left-width:3px;
+    font-size:10.5px;
+    line-height:1.48;
+  }
+
+  .specialist:not(.specialist-minimal) .profile-link{
+    display:block;
+    margin:10px 2px 2px;
+    font-size:10.5px;
+    line-height:1.35;
+  }
+
+  /* Mikhail: intentionally minimal. */
+  .specialist-minimal{
+    padding-bottom:12px;
+  }
+
+  .specialist-minimal .photo{
+    aspect-ratio:4 / 3;
+  }
+
+  .specialist-minimal h3{
+    margin:9px 4px 0;
+    padding:0;
+    font-size:25px;
+    line-height:1.05;
+    letter-spacing:-1.2px;
+  }
+
+  /* ---------- GENERAL MOBILE POLISH ---------- */
+  .section{
+    padding:52px 0;
+  }
+
+  .section-head h2{
+    font-size:34px;
+    line-height:1.02;
+  }
+
+  .btn{
+    min-height:48px;
+  }
+
+  .contact-box{
+    padding:19px;
+    border-radius:20px;
+  }
 }
 
 </style>
@@ -484,14 +762,14 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
     <div class="container">
       <div class="section-head reveal">
         <div><div class="kicker">05 — Партнёры</div><h2>Работаем<br>с оборудованием.</h2></div>
-        <p class="section-intro">Партнёры и проекты, с которыми работаем. 2 года мероприятий.</p>
+        <p class="section-intro">Партнёры и проекты, с которыми работаем.</p><div class="partners-experience">2 года мероприятий</div>
       </div>
     </div>
     <div class="marquee-wrap" aria-label="Партнёры OneAirSystem">
       <div class="marquee">
         <a class="partner partner-logo" href="https://grapebutik.ru/" target="_blank" rel="noopener noreferrer" aria-label="Grape — винотека">
           <img src="images/partners/grape.png" alt="Логотип Grape">
-          <strong>Grape</strong><span>винотека</span>
+          <strong>Grape</strong><span>партнёр</span>
         </a>
         <a class="partner partner-logo" href="https://shisharf.ru" target="_blank" rel="noopener noreferrer" aria-label="S2B">
           <img src="images/partners/s2b.png" alt="Логотип S2B">
@@ -499,19 +777,19 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
         </a>
         <a class="partner partner-logo" href="https://www.moek.ru" target="_blank" rel="noopener noreferrer" aria-label="МОЭК">
           <img src="images/partners/moek.png" alt="Логотип МОЭК">
-          <strong>МОЭК</strong><span>энергетическая компания</span>
+          <strong>МОЭК</strong><span>партнёр</span>
         </a>
         <a class="partner partner-logo" href="https://voschodm.ru" target="_blank" rel="noopener noreferrer" aria-label="Гостиница Восход">
           <img src="images/partners/voshod.png" alt="Логотип гостиницы «Восход»">
-          <strong>Восход</strong><span>гостиница</span>
+          <strong>Восход</strong><span>партнёр</span>
         </a>
         <a class="partner partner-logo" href="https://mostpp.ru" target="_blank" rel="noopener noreferrer" aria-label="Московская торгово-промышленная палата">
           <img src="images/partners/mtpp.png" alt="Логотип МТПП">
-          <strong>МТПП</strong><span>торгово-промышленная палата</span>
+          <strong>МТПП</strong><span>партнёр</span>
         </a>
         <a class="partner partner-logo" href="https://atlonfm.ru" target="_blank" rel="noopener noreferrer" aria-label="Атлон FM">
           <img src="images/partners/atlon.png" alt="Логотип Атлон FM">
-          <strong>Атлон FM</strong><span>строительная компания</span>
+          <strong>Атлон FM</strong><span>партнёр</span>
         </a>
 
         <div class="partner partner-logo manufacturer-logo"><img src="images/manufacturers/electrolux.png" alt="Логотип Electrolux"><strong>Electrolux</strong><span>производитель</span></div>
@@ -523,7 +801,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
 
         <a class="partner partner-logo" href="https://grapebutik.ru/" target="_blank" rel="noopener noreferrer" aria-label="Grape — винотека">
           <img src="images/partners/grape.png" alt="Логотип Grape">
-          <strong>Grape</strong><span>винотека</span>
+          <strong>Grape</strong><span>партнёр</span>
         </a>
         <a class="partner partner-logo" href="https://shisharf.ru" target="_blank" rel="noopener noreferrer" aria-label="S2B">
           <img src="images/partners/s2b.png" alt="Логотип S2B">
@@ -531,19 +809,19 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
         </a>
         <a class="partner partner-logo" href="https://www.moek.ru" target="_blank" rel="noopener noreferrer" aria-label="МОЭК">
           <img src="images/partners/moek.png" alt="Логотип МОЭК">
-          <strong>МОЭК</strong><span>энергетическая компания</span>
+          <strong>МОЭК</strong><span>партнёр</span>
         </a>
         <a class="partner partner-logo" href="https://voschodm.ru" target="_blank" rel="noopener noreferrer" aria-label="Гостиница Восход">
           <img src="images/partners/voshod.png" alt="Логотип гостиницы «Восход»">
-          <strong>Восход</strong><span>гостиница</span>
+          <strong>Восход</strong><span>партнёр</span>
         </a>
         <a class="partner partner-logo" href="https://mostpp.ru" target="_blank" rel="noopener noreferrer" aria-label="Московская торгово-промышленная палата">
           <img src="images/partners/mtpp.png" alt="Логотип МТПП">
-          <strong>МТПП</strong><span>торгово-промышленная палата</span>
+          <strong>МТПП</strong><span>партнёр</span>
         </a>
         <a class="partner partner-logo" href="https://atlonfm.ru" target="_blank" rel="noopener noreferrer" aria-label="Атлон FM">
           <img src="images/partners/atlon.png" alt="Логотип Атлон FM">
-          <strong>Атлон FM</strong><span>строительная компания</span>
+          <strong>Атлон FM</strong><span>партнёр</span>
         </a>
       </div>
     </div>
@@ -568,15 +846,9 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
           </div>
         </article>
 
-        <article class="specialist reveal" tabindex="0">
-          <div class="photo"><img src="images/workers/2.png" alt="Михаил Р., специалист по монтажу и обслуживанию кондиционеров" loading="lazy"></div>
-          <div>
-            <h3>Михаил Р.</h3>
-            <div class="role">Монтаж и обслуживание кондиционеров</div>
-            <div class="exp">На сервисе с января 2026 года · Москва</div>
-            <div class="review">Более пяти лет опыта в сфере климатического оборудования. Специализируется на установке и обслуживании кондиционеров, работает с системами вентиляции и климатическим оборудованием, выполняет согласование установки кондиционеров на фасаде. На сервисе с января 2026 года. Рейтинг 5,0 по 3 отзывам. Гарантия на работы — 12 месяцев, на оборудование — по гарантии производителя от 12 до 36 месяцев.</div>
-            <a class="profile-link" href="https://profi.ru/profile/RodionovMS19" target="_blank" rel="noopener noreferrer">Профиль Михаила на Профи.ру →</a>
-          </div>
+        <article class="specialist specialist-minimal reveal" tabindex="0">
+          <div class="photo"><img src="images/workers/2.png" alt="Михаил Р." loading="lazy"></div>
+          <h3>Михаил Р.</h3>
         </article>
       </div>
     </div>
