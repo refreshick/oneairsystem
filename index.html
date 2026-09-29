@@ -617,80 +617,250 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
 .contact-secondary-links .contact-link{min-width:0}
 .contact-link.max-link strong{color:#fff}
 
-/* Small promotional card — intentionally unobtrusive. */
+/* Business-card inspired promotion popup */
 .promo-popup{
   position:fixed;
   z-index:1000;
-  right:18px;
-  bottom:18px;
-  width:min(330px,calc(100vw - 36px));
+  right:20px;
+  bottom:20px;
+  width:min(365px,calc(100vw - 40px));
   box-sizing:border-box;
-  padding:17px 18px 16px;
-  border:1px solid rgba(255,255,255,.72);
-  border-radius:18px;
-  background:rgba(255,255,255,.97);
-  color:#1b2227;
-  box-shadow:0 18px 50px rgba(24,36,43,.2);
+  padding:0;
+  overflow:hidden;
+  border:2px solid #090909;
+  border-radius:8px;
+  background:#090909;
+  color:#f6e8c9;
+  box-shadow:0 18px 50px rgba(0,0,0,.42);
   opacity:0;
-  transform:translateY(18px) scale(.98);
+  transform:translateY(18px) scale(.96);
   pointer-events:none;
-  transition:opacity .28s ease,transform .28s ease;
+  transition:opacity .3s ease,transform .3s ease;
 }
+
 .promo-popup.show{
   opacity:1;
   transform:none;
   pointer-events:auto;
 }
+
+/* Визуальный мотив визитки: красный верхний блок + чёрная основа. */
+.promo-popup::before{
+  content:"";
+  display:block;
+  height:62px;
+  background:
+    radial-gradient(circle at 78% 20%,rgba(255,166,86,.65) 0 9%,transparent 10%),
+    radial-gradient(circle at 82% 20%,#ff3b22 0 24%,transparent 25%),
+    linear-gradient(135deg,#8d0905 0%,#ef1b0b 48%,#9f0b05 100%);
+  border-bottom:3px solid #ff2415;
+}
+
+.promo-popup::after{
+  content:"";
+  position:absolute;
+  left:24px;
+  top:48px;
+  width:120px;
+  height:4px;
+  background:#ff2415;
+  transform:skewX(-28deg) rotate(-2deg);
+  box-shadow:0 7px 0 rgba(255,241,210,.95);
+}
+
+.promo-popup-inner{
+  position:relative;
+  padding:16px 18px 17px;
+  background:
+    linear-gradient(165deg,rgba(255,255,255,.025),transparent 38%),
+    #090909;
+}
+
 .promo-popup-close{
   position:absolute;
-  top:8px;
-  right:9px;
+  top:10px;
+  right:10px;
+  z-index:3;
   width:28px;
   height:28px;
-  border:0;
+  border:1px solid rgba(246,232,201,.35);
   border-radius:50%;
-  background:transparent;
-  color:#66727a;
-  font-size:21px;
+  background:rgba(0,0,0,.35);
+  color:#f6e8c9;
+  font-size:20px;
   line-height:1;
   cursor:pointer;
 }
+
 .promo-popup-kicker{
-  color:var(--accent);
-  font-size:9px;
-  font-weight:800;
+  display:inline-block;
+  margin-bottom:8px;
+  padding:5px 8px;
+  border-radius:2px;
+  background:#ff2415;
+  color:#080808;
+  font-size:8px;
+  font-weight:900;
   letter-spacing:1.4px;
   text-transform:uppercase;
 }
+
 .promo-popup h3{
-  margin:5px 28px 4px 0;
-  font:700 19px/1.1 "Space Grotesk",sans-serif;
-  letter-spacing:-.4px;
+  max-width:300px;
+  margin:0 28px 6px 0;
+  font:800 27px/.98 "Space Grotesk",sans-serif;
+  letter-spacing:-1.2px;
+  text-transform:uppercase;
 }
+
+.promo-popup h3 span{
+  color:#ff3b22;
+}
+
 .promo-popup p{
+  max-width:305px;
   margin:0;
-  color:#69757c;
-  font-size:11px;
+  color:#cfc3aa;
+  font-size:10.5px;
   line-height:1.45;
 }
-.promo-popup .btn{
-  margin-top:11px;
-  min-height:38px;
-  padding:9px 13px;
+
+.promo-popup-offer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:13px 0 12px;
+  padding:11px 12px;
+  border:1px solid rgba(246,232,201,.2);
+  border-left:4px solid #ff2415;
+  border-radius:3px;
+  background:#111;
+}
+
+.promo-popup-offer strong{
+  display:block;
+  color:#f6e8c9;
   font-size:11px;
+  line-height:1.2;
+  text-transform:uppercase;
+  letter-spacing:.15px;
+}
+
+.promo-popup-offer span{
+  display:block;
+  margin-top:3px;
+  color:#9e9585;
+  font-size:9px;
+}
+
+.promo-popup-stamp{
+  flex:0 0 auto;
+  padding:7px 6px;
+  color:#080808;
+  background:#ff2415;
+  font:900 11px/1 "Space Grotesk",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  transform:rotate(-2deg);
+}
+
+.promo-popup .btn{
+  width:100%;
+  min-height:42px;
+  padding:9px 13px;
+  border:2px solid #ff2415;
+  border-radius:3px;
+  background:#ff2415;
+  color:#090909;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.2px;
+  text-transform:uppercase;
+  box-shadow:none;
+}
+
+.promo-popup .btn:hover{
+  background:#f6e8c9;
+  border-color:#f6e8c9;
+  color:#090909;
 }
 
 @media(max-width:640px){
-  .contact-secondary-links{grid-template-columns:1fr}
   .promo-popup{
-    right:12px;
-    bottom:12px;
-    width:calc(100vw - 24px);
-    padding:15px 16px 14px;
+    right:10px;
+    bottom:10px;
+    width:calc(100vw - 20px);
+    max-width:360px;
   }
-  .promo-popup h3{font-size:18px}
+
+  .promo-popup::before{
+    height:50px;
+  }
+
+  .promo-popup::after{
+    left:20px;
+    top:38px;
+    width:95px;
+  }
+
+  .promo-popup-inner{
+    padding:14px 15px 14px;
+  }
+
+  .promo-popup h3{
+    font-size:23px;
+  }
+
+  .promo-popup-offer{
+    margin-top:11px;
+  }
 }
 
+
+/* Compact promotion popup */
+.promo-popup{
+  right:16px;
+  bottom:16px;
+  width:min(300px,calc(100vw - 32px));
+  border-width:1px;
+  border-radius:7px;
+  box-shadow:0 12px 32px rgba(0,0,0,.35);
+}
+.promo-popup::before{height:42px;border-bottom-width:2px}
+.promo-popup::after{left:18px;top:32px;width:78px;height:3px;box-shadow:0 5px 0 rgba(255,241,210,.85)}
+.promo-popup-inner{padding:11px 13px 12px}
+.promo-popup-close{top:7px;right:7px;width:24px;height:24px;font-size:17px}
+.promo-popup-kicker{margin-bottom:6px;padding:4px 6px;font-size:7px;letter-spacing:1.1px}
+.promo-popup h3{max-width:235px;margin:0 24px 5px 0;font-size:21px;line-height:.98;letter-spacing:-.8px}
+.promo-popup p{max-width:250px;font-size:9px;line-height:1.35}
+.promo-popup-offer{gap:8px;margin:9px 0 9px;padding:8px 9px;border-left-width:3px}
+.promo-popup-offer strong{font-size:9px}
+.promo-popup-offer span{margin-top:2px;font-size:8px}
+.promo-popup-stamp{padding:5px 6px;font-size:8px}
+.promo-popup .btn{min-height:36px;padding:8px 12px;font-size:9px}
+
+@media(max-width:640px){
+  .promo-popup{
+    right:8px;
+    bottom:8px;
+    width:calc(100vw - 16px);
+    max-width:270px;
+    border-radius:6px;
+  }
+  .promo-popup::before{height:34px}
+  .promo-popup::after{left:14px;top:26px;width:60px;height:2px;box-shadow:0 4px 0 rgba(255,241,210,.8)}
+  .promo-popup-inner{padding:9px 10px 10px}
+  .promo-popup-close{top:5px;right:5px;width:21px;height:21px;font-size:15px}
+  .promo-popup-kicker{margin-bottom:5px;padding:3px 5px;font-size:6.5px;letter-spacing:.9px}
+  .promo-popup h3{max-width:205px;margin:0 22px 4px 0;font-size:18px;line-height:.98;letter-spacing:-.6px}
+  .promo-popup p{max-width:225px;font-size:8px;line-height:1.3}
+  .promo-popup-offer{gap:6px;margin:7px 0 7px;padding:6px 7px}
+  .promo-popup-offer strong{font-size:8px}
+  .promo-popup-offer span{font-size:7px}
+  .promo-popup-stamp{padding:4px 5px;font-size:7px}
+  .promo-popup .btn{min-height:32px;padding:7px 9px;font-size:8px}
+}
 </style>
 
 <script type="application/ld+json">
@@ -820,7 +990,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
           <span class="num">02.2</span><div class="card-icon">+</div>
           <h3>Аксессуары для кондиционера</h3>
           <p class="card-short">Защита и комплектующие для корректной эксплуатации.</p>
-          <div class="card-long"><ul><li>Козырьки.</li><li>Корзины.</li><li>Поппы.</li><li>Распылители.</li><li>Защитные экраны.</li><li>Виброопоры.</li></ul></div>
+          <div class="card-long"><ul><li>Козырьки.</li><li>Корзины.</li><li>Помпы.</li><li>Распылители.</li><li>Защитные экраны.</li><li>Виброопоры.</li></ul></div>
         </article>
 
         <article class="card service-card reveal" tabindex="0">
@@ -837,41 +1007,41 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
 <section class="section" id="catalog"><div class="container"><div class="section-head reveal"><div><div class="kicker">03 · Модели</div><h2>Кондиционеры под задачу, а не просто по каталогу.</h2></div><p class="section-intro">Модели разделены по брендам, чтобы быстро сравнить серию и параметры.</p></div>
 <div class="catalog-all-head"><div><div class="kicker">Каталог</div><h3 class="catalog-title">12 моделей по брендам</h3></div><div class="brand-filters"><button class="brand-filter active" type="button" data-brand-filter="all">Все</button><button class="brand-filter" type="button" data-brand-filter="Hisense">Hisense</button><button class="brand-filter" type="button" data-brand-filter="Gree">Gree</button><button class="brand-filter" type="button" data-brand-filter="Energolux">Energolux</button><button class="brand-filter" type="button" data-brand-filter="Royal Clima">Royal Clima</button></div></div>
 <div class="brand-groups" id="allModels"><section class="brand-group" data-brand-group="Hisense"><div class="brand-group-head"><div><span class="brand-name">Hisense</span><span class="brand-series">GOAL 2.0 DC Inverter</span></div><span class="brand-count">3 модели</span></div><div class="brand-grid"><article class="product catalog-product" data-brand="Hisense">
-  <div class="product-photo"><img src="images/products/hisense_goal_07.png" alt="Hisense AS-07UW4RYRKJ00" data-fallback="https://split-step.ru/upload/iblock/09a/gwi3cf5lix3b2360i50uyiar2v713l83.png" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Hisense</span></div>
-  <div class="product-info"><div class="product-meta">GOAL 2.0 DC Inverter</div><h4>AS-07UW4RYRKJ00</h4><div class="product-specs"><span><b>до 23 м²</b><small>площадь</small></span><span><b>2.30 кВт</b><small>охлаждение</small></span><span><b>2.30 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://hisenseair.ru/as-07uw4ryrkj00/" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/hisense_goal_07.png" alt="Hisense AS-07UW4RYRKJ00" loading="lazy"><span class="photo-brand">Hisense</span></div>
+  <div class="product-info"><div class="product-meta">GOAL 2.0 DC Inverter</div><h4>AS-07UW4RYRKJ00</h4><div class="product-specs"><span><b>до 23 м²</b><small>площадь</small></span><span><b>2.30 кВт</b><small>охлаждение</small></span><span><b>2.30 кВт</b><small>обогрев</small></span></div></div>
  </article><article class="product catalog-product" data-brand="Hisense">
-  <div class="product-photo"><img src="images/products/hisense_goal_09.png" alt="Hisense AS-09UW4RYRKJ05" data-fallback="https://eco-conditioner.ru/wa-data/public/shop/products/74/04/10474/images/42802/42802.0x96.jpg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Hisense</span></div>
-  <div class="product-info"><div class="product-meta">GOAL 2.0 DC Inverter</div><h4>AS-09UW4RYRKJ05</h4><div class="product-specs"><span><b>до 27 м²</b><small>площадь</small></span><span><b>2.72 кВт</b><small>охлаждение</small></span><span><b>2.75 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://hisenseair.ru/as-09uw4ryrkj05/" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/hisense_goal_09.png" alt="Hisense AS-09UW4RYRKJ05" loading="lazy"><span class="photo-brand">Hisense</span></div>
+  <div class="product-info"><div class="product-meta">GOAL 2.0 DC Inverter</div><h4>AS-09UW4RYRKJ05</h4><div class="product-specs"><span><b>до 27 м²</b><small>площадь</small></span><span><b>2.72 кВт</b><small>охлаждение</small></span><span><b>2.75 кВт</b><small>обогрев</small></span></div></div>
  </article><article class="product catalog-product" data-brand="Hisense">
-  <div class="product-photo"><img src="images/products/hisense_goal_13.png" alt="Hisense AS-13UW4RYRKJ04" data-fallback="https://proholodspb.ru/spec/pict14069-1-2503.png" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Hisense</span></div>
-  <div class="product-info"><div class="product-meta">GOAL 2.0 DC Inverter</div><h4>AS-13UW4RYRKJ04</h4><div class="product-specs"><span><b>до 37 м²</b><small>площадь</small></span><span><b>3.70 кВт</b><small>охлаждение</small></span><span><b>3.75 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://hisenseair.ru/as-13uw4ryrkj04/" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/hisense_goal_13.png" alt="Hisense AS-13UW4RYRKJ04" loading="lazy"><span class="photo-brand">Hisense</span></div>
+  <div class="product-info"><div class="product-meta">GOAL 2.0 DC Inverter</div><h4>AS-13UW4RYRKJ04</h4><div class="product-specs"><span><b>до 37 м²</b><small>площадь</small></span><span><b>3.70 кВт</b><small>охлаждение</small></span><span><b>3.75 кВт</b><small>обогрев</small></span></div></div>
  </article></div></section><section class="brand-group" data-brand-group="Gree"><div class="brand-group-head"><div><span class="brand-name">Gree</span><span class="brand-series">Bora</span></div><span class="brand-count">3 модели</span></div><div class="brand-grid"><article class="product catalog-product" data-brand="Gree">
-  <div class="product-photo"><img src="images/products/gree_bora_07.png" alt="Gree GWH07AAAXA-K3NNA2A" data-fallback="https://technolider.com/upload/iblock/b18/2ra9qd0uyc3r1enj7czbl2jbfrhctckh/0.jpeg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Gree</span></div>
-  <div class="product-info"><div class="product-meta">Bora</div><h4>GWH07AAAXA-K3NNA2A</h4><div class="product-specs"><span><b>до 20 м²</b><small>площадь</small></span><span><b>2.25 кВт</b><small>охлаждение</small></span><span><b>2.30 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://gree-cool.ru/64-nastennye/71-serija-bora/GWH07AAAXA-K3NNA2A" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/gree_bora_07.png" alt="Gree GWH07AAAXA-K3NNA2A" loading="lazy"><span class="photo-brand">Gree</span></div>
+  <div class="product-info"><div class="product-meta">Bora</div><h4>GWH07AAAXA-K3NNA2A</h4><div class="product-specs"><span><b>до 20 м²</b><small>площадь</small></span><span><b>2.25 кВт</b><small>охлаждение</small></span><span><b>2.30 кВт</b><small>обогрев</small></span></div></div>
  </article><article class="product catalog-product" data-brand="Gree">
-  <div class="product-photo"><img src="images/products/gree_bora_09.png" alt="Gree GWH09AAAXA-K3NNA2A" data-fallback="https://technolider.com/upload/iblock/b18/2ra9qd0uyc3r1enj7czbl2jbfrhctckh/0.jpeg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Gree</span></div>
-  <div class="product-info"><div class="product-meta">Bora</div><h4>GWH09AAAXA-K3NNA2A</h4><div class="product-specs"><span><b>до 25 м²</b><small>площадь</small></span><span><b>— кВт</b><small>охлаждение</small></span><span><b>— кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://gree-cool.ru/64-nastennye/71-serija-bora/GWH09AAAXA-K3NNA2A" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/gree_bora_09.png" alt="Gree GWH09AAAXA-K3NNA2A" loading="lazy"><span class="photo-brand">Gree</span></div>
+  <div class="product-info"><div class="product-meta">Bora</div><h4>GWH09AAAXA-K3NNA2A</h4><div class="product-specs"><span><b>до 25 м²</b><small>площадь</small></span><span><b>— кВт</b><small>охлаждение</small></span><span><b>— кВт</b><small>обогрев</small></span></div></div>
  </article><article class="product catalog-product" data-brand="Gree">
-  <div class="product-photo"><img src="images/products/gree_bora_12.png" alt="Gree GWH12AABXB-K3NNA2B" data-fallback="https://technolider.com/upload/iblock/b18/2ra9qd0uyc3r1enj7czbl2jbfrhctckh/0.jpeg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Gree</span></div>
-  <div class="product-info"><div class="product-meta">Bora</div><h4>GWH12AABXB-K3NNA2B</h4><div class="product-specs"><span><b>до 35 м²</b><small>площадь</small></span><span><b>3.25 кВт</b><small>охлаждение</small></span><span><b>3.40 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://gree-cool.ru/64-nastennye/71-serija-bora/GWH12AABXB-K3NNA2B" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/gree_bora_12.png" alt="Gree GWH12AABXB-K3NNA2B" loading="lazy"><span class="photo-brand">Gree</span></div>
+  <div class="product-info"><div class="product-meta">Bora</div><h4>GWH12AABXB-K3NNA2B</h4><div class="product-specs"><span><b>до 35 м²</b><small>площадь</small></span><span><b>3.25 кВт</b><small>охлаждение</small></span><span><b>3.40 кВт</b><small>обогрев</small></span></div></div>
  </article></div></section><section class="brand-group" data-brand-group="Energolux"><div class="brand-group-head"><div><span class="brand-name">Energolux</span><span class="brand-series">Champery</span></div><span class="brand-count">3 модели</span></div><div class="brand-grid"><article class="product catalog-product" data-brand="Energolux">
-  <div class="product-photo"><img src="images/products/energolux_champery_07.png" alt="Energolux SAS07CH1-AI / SAU07CH1-AI" data-fallback="https://glavclimate.ru/assets/cache_image/images/products_new/newchampery.1_110x110_d19.jpg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Energolux</span></div>
-  <div class="product-info"><div class="product-meta">Champery</div><h4>SAS07CH1-AI / SAU07CH1-AI</h4><div class="product-specs"><span><b>до 22 м²</b><small>площадь</small></span><span><b>2.20 кВт</b><small>охлаждение</small></span><span><b>2.30 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://energolux.com.ru/catalog/nastennye_konditsionery/energolux_sas07ch1_ai_sau07ch1_ai/" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/energolux_champery_07.png" alt="Energolux SAS07CH1-AI / SAU07CH1-AI" loading="lazy"><span class="photo-brand">Energolux</span></div>
+  <div class="product-info"><div class="product-meta">Champery</div><h4>SAS07CH1-AI / SAU07CH1-AI</h4><div class="product-specs"><span><b>до 22 м²</b><small>площадь</small></span><span><b>2.20 кВт</b><small>охлаждение</small></span><span><b>2.30 кВт</b><small>обогрев</small></span></div></div>
  </article><article class="product catalog-product" data-brand="Energolux">
-  <div class="product-photo"><img src="images/products/energolux_murren_09.png" alt="Energolux SAS09M1-AIB / SAU09M1-AIB" data-fallback="https://climstore.ru/upload/iblock/37e/sb15csc6vjzw46vsvj4hjk1rcrye3zr4.jpg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Energolux</span></div>
-  <div class="product-info"><div class="product-meta">Murren</div><h4>SAS09M1-AIB / SAU09M1-AIB</h4><div class="product-specs"><span><b>до 25–26 м²</b><small>площадь</small></span><span><b>2.60 кВт</b><small>охлаждение</small></span><span><b>2.63 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://energolux.com.ru/catalog/nastennye_konditsionery/energolux_sas09m1_aib_sau09m1_aib/" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/energolux_murren_09.png" alt="Energolux SAS09M1-AIB / SAU09M1-AIB" loading="lazy"><span class="photo-brand">Energolux</span></div>
+  <div class="product-info"><div class="product-meta">Murren</div><h4>SAS09M1-AIB / SAU09M1-AIB</h4><div class="product-specs"><span><b>до 25–26 м²</b><small>площадь</small></span><span><b>2.60 кВт</b><small>охлаждение</small></span><span><b>2.63 кВт</b><small>обогрев</small></span></div></div>
  </article><article class="product catalog-product" data-brand="Energolux">
-  <div class="product-photo"><img src="images/products/energolux_basel_30.png" alt="Energolux SAS30B4-A / SAU30B4-A" data-fallback="https://cityclimat.ru/images/gen/item_image/image/site1/1119/6/111875_r4060.jpg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Energolux</span></div>
-  <div class="product-info"><div class="product-meta">Basel 4</div><h4>SAS30B4-A / SAU30B4-A</h4><div class="product-specs"><span><b>до 80 м²</b><small>площадь</small></span><span><b>7.90 кВт</b><small>охлаждение</small></span><span><b>8.10 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://energolux.com.ru/catalog/nastennye_konditsionery/energolux_sas30b4_a_sau30b4_a/" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/energolux_basel_30.png" alt="Energolux SAS30B4-A / SAU30B4-A" loading="lazy"><span class="photo-brand">Energolux</span></div>
+  <div class="product-info"><div class="product-meta">Basel 4</div><h4>SAS30B4-A / SAU30B4-A</h4><div class="product-specs"><span><b>до 80 м²</b><small>площадь</small></span><span><b>7.90 кВт</b><small>охлаждение</small></span><span><b>8.10 кВт</b><small>обогрев</small></span></div></div>
  </article></div></section><section class="brand-group" data-brand-group="Royal Clima"><div class="brand-group-head"><div><span class="brand-name">Royal Clima</span><span class="brand-series">ARIA Inverter</span></div><span class="brand-count">3 модели</span></div><div class="brand-grid"><article class="product catalog-product" data-brand="Royal Clima">
-  <div class="product-photo"><img src="images/products/royal_clima_aria_22.png" alt="Royal Clima RCI-AR22HN" data-fallback="https://condeytoday.ru/thumb/2/Tt6xgo0D17Ets3aXtZt0kA/r/d/royal_clima_rci-gl22hn2.jpg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Royal Clima</span></div>
-  <div class="product-info"><div class="product-meta">ARIA Inverter</div><h4>RCI-AR22HN</h4><div class="product-specs"><span><b>до 21 м²</b><small>площадь</small></span><span><b>2.12 кВт</b><small>охлаждение</small></span><span><b>2.35 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://royal-clima.com.ru/royal-clima-rci-ar22hn-aria-inverter" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/royal_clima_aria_22.png" alt="Royal Clima RCI-AR22HN" loading="lazy"><span class="photo-brand">Royal Clima</span></div>
+  <div class="product-info"><div class="product-meta">ARIA Inverter</div><h4>RCI-AR22HN</h4><div class="product-specs"><span><b>до 21 м²</b><small>площадь</small></span><span><b>2.12 кВт</b><small>охлаждение</small></span><span><b>2.35 кВт</b><small>обогрев</small></span></div></div>
  </article><article class="product catalog-product" data-brand="Royal Clima">
-  <div class="product-photo"><img src="images/products/royal_clima_aria_28.png" alt="Royal Clima RCI-AR28HN" data-fallback="https://klimatproff.ru/pictures/product/middle/64841_middle.jpg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Royal Clima</span></div>
-  <div class="product-info"><div class="product-meta">ARIA Inverter</div><h4>RCI-AR28HN</h4><div class="product-specs"><span><b>до 27 м²</b><small>площадь</small></span><span><b>2.65 кВт</b><small>охлаждение</small></span><span><b>2.80 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://royal-clima.com.ru/royal-clima-rci-ar28hn-aria-inverter" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/royal_clima_aria_28.png" alt="Royal Clima RCI-AR28HN" loading="lazy"><span class="photo-brand">Royal Clima</span></div>
+  <div class="product-info"><div class="product-meta">ARIA Inverter</div><h4>RCI-AR28HN</h4><div class="product-specs"><span><b>до 27 м²</b><small>площадь</small></span><span><b>2.65 кВт</b><small>охлаждение</small></span><span><b>2.80 кВт</b><small>обогрев</small></span></div></div>
  </article><article class="product catalog-product" data-brand="Royal Clima">
-  <div class="product-photo"><img src="images/products/royal_clima_aria_35.png" alt="Royal Clima RCI-AR35HN" data-fallback="https://cityclimat.ru/images/gen/item_image/image/site1/1044/6/104303_r4097.jpg" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback" referrerpolicy="no-referrer"><span class="photo-brand">Royal Clima</span></div>
-  <div class="product-info"><div class="product-meta">ARIA Inverter</div><h4>RCI-AR35HN</h4><div class="product-specs"><span><b>до 35 м²</b><small>площадь</small></span><span><b>3.52 кВт</b><small>охлаждение</small></span><span><b>3.66 кВт</b><small>обогрев</small></span></div><a class="profile-link" href="https://royal-clima.com.ru/royal-clima-rci-ar35hn-aria-inverter" target="_blank" rel="noopener noreferrer">Характеристики →</a></div>
+  <div class="product-photo"><img src="images/products/royal_clima_aria_35.png" alt="Royal Clima RCI-AR35HN" loading="lazy"><span class="photo-brand">Royal Clima</span></div>
+  <div class="product-info"><div class="product-meta">ARIA Inverter</div><h4>RCI-AR35HN</h4><div class="product-specs"><span><b>до 35 м²</b><small>площадь</small></span><span><b>3.52 кВт</b><small>охлаждение</small></span><span><b>3.66 кВт</b><small>обогрев</small></span></div></div>
  </article></div></section></div></div></section>
 
 <section class="section" id="works">
@@ -1125,11 +1295,17 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
 
 
 <div class="promo-popup" id="promoPopup" role="dialog" aria-label="Специальное предложение" aria-hidden="true">
-  <button class="promo-popup-close" id="promoClose" type="button" aria-label="Закрыть">×</button>
-  <div class="promo-popup-kicker">Специальное предложение</div>
-  <h3>Скидка на кондиционер + монтаж</h3>
-  <p>Оставьте контакты — уточним доступную модель, стоимость и условия предложения.</p>
-  <a class="btn btn-primary" href="#contacts" id="promoAction">Получить предложение</a>
+  <div class="promo-popup-inner">
+    <button class="promo-popup-close" id="promoClose" type="button" aria-label="Закрыть">×</button>
+    <div class="promo-popup-kicker">Специальное предложение</div>
+    <h3>Кондиционер<br><span>+ монтаж</span></h3>
+    <p>Оставьте контакты — подберём модель и сообщим условия действующей акции.</p>
+    <div class="promo-popup-offer">
+      <div><strong>Оборудование + установка</strong><span>Подбор под ваше помещение</span></div>
+      <div class="promo-popup-stamp">АКЦИЯ</div>
+    </div>
+    <a class="btn btn-primary" href="#contacts" id="promoAction">Получить предложение</a>
+  </div>
 </div>
 
 
