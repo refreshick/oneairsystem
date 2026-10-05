@@ -564,6 +564,12 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
   gap:10px;
   align-content:start;
 }
+
+/* Google Sheets lead form */
+.site-discount{padding:12px 13px;border:1px solid rgba(255,216,92,.32);border-radius:13px;background:rgba(255,216,92,.08);display:grid;gap:3px}
+.site-discount strong{font-family:"Space Grotesk",sans-serif;font-size:16px;color:#ffe58a}
+.site-discount span{font-size:11px;line-height:1.45;color:rgba(255,255,255,.7)}
+.form-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
 .contact-form-title{
   margin-bottom:3px;
   font-family:"Space Grotesk",sans-serif;
@@ -1174,18 +1180,17 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
           </div>
         </div>
         <div>
-          <form class="contact-form" action="https://formsubmit.co/oneairsystem@mail.ru" method="POST">
+          <form class="contact-form" id="contactForm">
             <div class="contact-form-title">Оставить контакты</div>
-            <input type="hidden" name="_subject" value="Новая заявка с сайта OneAirSystem">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_url" value="https://oneairsystem.ru/">
+            <div class="site-discount"><strong>Скидка 5%</strong><span>При подаче заявки через сайт вы получаете скидку 5% на оборудование и монтаж.</span></div>
             <input type="text" name="name" placeholder="Ваше имя" autocomplete="name" required>
             <input type="tel" name="phone" placeholder="Телефон" autocomplete="tel" required>
             <input type="email" name="email" placeholder="E-mail" autocomplete="email">
             <textarea name="message" placeholder="Что вас интересует?" rows="3"></textarea>
-            <button class="btn btn-primary form-submit" type="submit">Отправить заявку</button>
-            <div class="form-status" role="status" aria-live="polite">Спасибо! Заявка отправлена. Мы свяжемся с вами.</div>
-            <div class="form-note">Нажимая кнопку, вы отправляете указанные данные для связи с OneAirSystem.</div>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-honeypot">
+            <button class="btn btn-primary form-submit" type="submit">Получить скидку 5% и отправить заявку</button>
+            <div class="form-status" role="status" aria-live="polite">Заявка отправлена! Скидка 5% зафиксирована — мы свяжемся с вами.</div>
+            <div class="form-note">Нажимая кнопку, вы соглашаетесь на обработку указанных данных для связи с OneAirSystem.</div>
           </form>
           <div class="contact-secondary-links">
             <a class="contact-link" href="tel:+79259785810"><span aria-hidden="true">☎</span><span><b>Телефон</b><strong>+7 925 978-58-10</strong></span></a>
@@ -1331,39 +1336,38 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:11px}.footer-row{display
     });
   }
 
-  /* Send the contact form without leaving the site. */
-  const form = document.querySelector('.contact-form');
+  /* Send leads to Google Sheets via Apps Script. */
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbziQhYclCrOnOWNJ4vdE61rc0jEelJiaZ0YiddLZcSwIVEoS0eAn87M6ADpnUjKY5aJ8A/exec';
+  const form = document.getElementById('contactForm');
   const status = form?.querySelector('.form-status');
   if(form){
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const button = form.querySelector('.form-submit');
       const originalText = button.textContent;
+      if(form.elements.website.value) return;
+      if(!GOOGLE_SCRIPT_URL.startsWith('https://script.google.com/')){
+        status.textContent = 'Форма ещё не подключена к Google Таблице. Укажите URL веб-приложения Apps Script.';
+        status.classList.add('show');
+        return;
+      }
       button.disabled = true;
       button.textContent = 'Отправляем…';
-      status?.classList.remove('show');
-
+      status.classList.remove('show');
+      const data = new URLSearchParams(new FormData(form));
+      data.set('page', window.location.href);
+      data.set('discount', '5% за заявку через сайт');
       try{
-        const data = Object.fromEntries(new FormData(form).entries());
-        const response = await fetch('https://formsubmit.co/ajax/oneairsystem@mail.ru', {
-          method:'POST',
-          headers:{'Content-Type':'application/json','Accept':'application/json'},
-          body:JSON.stringify(data)
-        });
-        const result = await response.json();
-        if(!response.ok || result.success === false) throw new Error('Form submit failed');
+        await fetch(GOOGLE_SCRIPT_URL, {method:'POST', mode:'no-cors', body:data});
         form.reset();
-        status?.classList.add('show');
+        status.textContent = 'Заявка отправлена! Скидка 5% зафиксирована — мы свяжемся с вами.';
+        status.classList.add('show');
         button.textContent = 'Заявка отправлена';
       }catch(error){
-        /* Fallback to the ordinary HTML POST if AJAX is unavailable. */
-        form.submit();
-        return;
+        status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами по телефону.';
+        status.classList.add('show');
       }finally{
-        if(button.textContent !== 'Заявка отправлена'){
-          button.disabled = false;
-          button.textContent = originalText;
-        }
+        if(button.textContent !== 'Заявка отправлена'){button.disabled=false;button.textContent=originalText;}
       }
     });
   }
